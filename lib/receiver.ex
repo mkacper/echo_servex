@@ -13,6 +13,7 @@ defmodule EchoServex.Receiver do
 
   @impl true
   def handle_info({:tcp, socket, data}, %{socket: socket} = state) do
+    IO.inspect data
     :gen_tcp.send(socket, data)
     :inet.setopts(socket, [{:active, :once}])
     {:noreply, state}
